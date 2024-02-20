@@ -1,0 +1,23 @@
+---
+- name: Install PostgreSQL on CentOS
+  yum:
+    name:
+      - postgresql{{ postgres_version | regex_replace('\\.', '') }}
+      - postgresql{{ postgres_version | regex_replace('\\.', '') }}-contrib
+      - postgresql{{ postgres_version | regex_replace('\\.', '') }}-client
+    state: present
+  become: yes
+
+- name: Ensure PostgreSQL configuration directory exists
+  file:
+    path: "/etc/postgresql/{{ postgres_version }}/main"
+    state: directory
+    recurse: yes
+  become: yes
+
+- name: Create PostgreSQL Configuration File
+  template:
+    src: postgres_conf.j2
+    dest: "/etc/postgresql/{{ postgres_version }}/main/postgresql.conf"
+  notify: Restart PostgreSQL
+

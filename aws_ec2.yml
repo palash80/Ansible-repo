@@ -1,0 +1,11 @@
+#aws_access_key: AKIA5RIWKGTTSHJAUROI 
+#aws_secret_key: 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
+#
+#
+---
+plugin: aws_ec2
+regions:
+  - us-east-1
+filters:
+  instance-state-code: 16
+  
