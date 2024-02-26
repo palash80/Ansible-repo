@@ -2,6 +2,7 @@
 ---
 - hosts: tag_group_psqlnodes
   become: yes
+  gather_facts: yes
   roles:
     - postgresql
 
