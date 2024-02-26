@@ -1,6 +1,6 @@
 
 ---
-- hosts: tag_group_psqlnodes
+- hosts: all
   become: yes
   roles:
     - postgresql
