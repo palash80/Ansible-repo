@@ -19,6 +19,7 @@
     state: present
   become: yes
 
+
 - name: Ensure PostgreSQL configuration directory exists
   file:
     path: "/etc/postgresql/{{ postgres_version }}/main"
@@ -31,4 +32,11 @@
     src: postgres_conf.j2
     dest: "/etc/postgresql/{{ postgres_version }}/main/postgresql.conf"
   notify: Restart PostgreSQL
+  when: inventory_hostname in groups["tag_group_psqlnodes"]
 
+
+
+
+
+
+  
