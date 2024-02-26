@@ -1,6 +1,6 @@
 
 ---
-- hosts: tag_group_psqlnodes
+- hosts: tag_project_psql
   become: yes
   gather_facts: yes
   roles:
