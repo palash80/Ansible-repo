@@ -8,6 +8,8 @@ regions:
 filters:
   instance-state-code: 16
 
+groups:
+  ubuntu: "'psql' in tags.project"
 keyed_groups:
   - key: tags
     prefix: tag
