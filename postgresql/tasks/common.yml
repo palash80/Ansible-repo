@@ -1,6 +1,6 @@
 - name: Ensure directory exists
  ansible.builtin.file:
-    path: /etc/postgresql/13/main
+    path: /etc/postgresql/14/main
     state: directory
     owner: postgres
     group: postgres
@@ -9,7 +9,7 @@
 - name: Create PostgreSQL Configuration File
  ansible.builtin.template:
     src: postgres_conf.j2
-    dest: /etc/postgresql/13/main/postgresql.conf
+    dest: /etc/postgresql/14/main/postgresql.conf
     owner: postgres
     group: postgres
     mode: 0644
