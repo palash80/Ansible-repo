@@ -1,14 +1,16 @@
 
 ---
-- name: Add PostgreSQL APT repository key
+- name: Add PostgreSQL APT repository key 1
   apt_key:
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
     state: present
+  when: inventory_hostname in groups["tag_group_psqlnodes"]
 
 - name: Add PostgreSQL APT repository
   apt_repository:
     repo: "deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"
     state: present
+  when: inventory_hostname in groups["tag_group_psqlnodes"]
 
 - name: Install PostgreSQL on Ubuntu
   apt:
@@ -18,6 +20,7 @@
       - postgresql-client
     state: present
   become: yes
+  when: inventory_hostname in groups["tag_group_psqlnodes"]
 
 
 - name: Ensure PostgreSQL configuration directory exists
@@ -26,6 +29,7 @@
     state: directory
     recurse: yes
   become: yes
+  when: inventory_hostname in groups["tag_group_psqlnodes"]
 
 - name: Create PostgreSQL Configuration File
   template:
